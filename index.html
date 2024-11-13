@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Turn RegSim into real assembly.">
+    <title>RegSim Reassembler</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <script defer src="main.js"></script>
+    <h1>RegSim Reassembler</h1>
+    <div class="row-container">
+        <div class="column">
+            <p>Input:</p>
+            <textarea id="input-area" class="input-area" spellcheck="false" aria-label="Code input">[data]
+# komentar 1
+magic_number: 42
+
+counter: 1024 # = 0
+const_funny: 1025 # = 69
+output_addr: 1026 # = 1027
+
+[code]
+
+main:
+# zistime ci sme zapisali 42 krat %const_funny
+load [%counter]
+cmp %magic_number
+jc %exit
+inc
+store [%counter]
+
+load [%const_funny]
+store [mem %output_addr]
+
+load [%output_addr]
+inc
+store [%output_addr]
+jmp %main # vratime sa na zaciatok cyklu
+
+exit: halt</textarea>
+            <button id="assemble-button">Assemble!</button>
+        </div>
+        <div class="column">
+            <p>Output:</p>
+            <pre id="output-area"></pre>
+        </div>
+    </div>
+
+</body>
+
+</html>
