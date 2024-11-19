@@ -3,9 +3,9 @@
 # komentar 1
 magic_number: 42
 
-counter: 1024 # = 0
-const_funny: 1025 # = 69
-output_addr: 1026 # = 1027
+var counter: 1024 = 0
+var const_funny: 1025 = 69
+var output_addr: 1026 = 1027
 
 [code]
 
