@@ -24,8 +24,16 @@ textarea {
     flex-direction: row;
 }
 
-pre {
+.fill {
     width: 90%;
-    height: 10rem;
+    min-height: 10rem;
     margin: 1rem;
+}
+
+.btn-copy {
+    display: flex;
+    height: 2rem;
+    width: 2rem;
+    justify-content: center;
+    float: right;
 }

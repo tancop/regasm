@@ -19,6 +19,10 @@ window.onload = function () {
   let memoryHeader = document.getElementById("memory-header");
   /** @type HTMLPreElement */
   let outputMem = document.getElementById("output-mem");
+  /** @type HTMLButtonElement */
+  let copyCodeButton = document.getElementById("copy-code");
+  /** @type HTMLButtonElement */
+  let copyMemoryButton = document.getElementById("copy-memory");
 
   assembleButton.addEventListener(
     "click",
@@ -123,6 +127,22 @@ window.onload = function () {
       }
       outputMem.innerHTML = memoryOutput;
       memoryHeader.innerHTML = `Memory (starting at ${memoryStart}):`;
+    },
+    { passive: true },
+  );
+
+  copyCodeButton.addEventListener(
+    "click",
+    () => {
+      window.navigator.clipboard.writeText(outputArea.innerHTML);
+    },
+    { passive: true },
+  );
+
+  copyMemoryButton.addEventListener(
+    "click",
+    () => {
+      window.navigator.clipboard.writeText(outputMem.innerHTML);
     },
     { passive: true },
   );
