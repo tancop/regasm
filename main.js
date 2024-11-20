@@ -41,6 +41,7 @@ window.onload = function () {
       let memoryStart = -1;
       let memoryEnd = -1;
       let variables = {};
+      let variablesLeft = 0;
 
       for (let i = 0; i < lines.length; i++) {
         let line = lines[i];
@@ -66,7 +67,10 @@ window.onload = function () {
               let varName = label.split(" ")[1];
               let [addressString, initValue] = value.split("=");
               let address = Number.parseInt(addressString);
-              if (initValue) variables[address] = initValue.trim();
+              if (initValue) {
+                variables[address] = initValue.trim();
+                variablesLeft++;
+              }
               labels[varName] = addressString.trim();
 
               if (memoryStart == -1 || address < memoryStart) {
@@ -121,8 +125,12 @@ window.onload = function () {
         for (const [k, v] of Object.entries(variables)) {
           if (k == i) {
             memoryOutput = memoryOutput.concat(v);
+            if (v.length > 0) {
+              variablesLeft--;
+            }
           }
         }
+        if (variablesLeft == 0) break;
         memoryOutput = memoryOutput.concat("\n");
       }
       outputMem.innerHTML = memoryOutput;
